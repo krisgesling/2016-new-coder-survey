@@ -30,7 +30,7 @@ $("document").ready(function(){
   });
 
   // ---- For Bar Charts ---- //
-  // ---------SCROLL--------- //  
+  // ---------SCROLL--------- //
   (function($) {
     /**
      * Copyright 2012, Digital Fusion
@@ -46,7 +46,7 @@ $("document").ready(function(){
 
         var $t            = $(this),
             $w            = $(window),
-            viewTop       = $w.scrollTop(), 
+            viewTop       = $w.scrollTop(),
             viewBottom    = viewTop + $w.height(),
             _top          = $t.offset().top,
             _bottom       = _top + $t.height(),
@@ -62,33 +62,38 @@ $("document").ready(function(){
   var win = $(window);
 
   var allMods = $(".chart-graphic");
-  
+
   allMods.each(function(i, el) {
     var el = $(el);
     if (el.visible(true)) {
       // console.log("already-visible");
-    } 
+    }
   });
+
+  //preloaderMap sets the height of the map so DOM if fixed
+  //for proper anchor when share links like https://.../#Podcast
+  preloaderMap();
 
   win.scroll(function(event) {
 
     allMods.each(function(i, el) {
       var el = $(el);
       if (el.visible(true)) {
-        // el.addClass("come-in"); 
+        // el.addClass("come-in");
         var ID = $(el).attr('id');
         allBarCharts.check(ID);
-      } 
+      }
     });
 
   });
   // ---------SCROLL-END----- //
 
   win.resize(function() {
+    preloaderMap();
     allMods.each(function(i, el) {
       var ID = $(el).attr('id');
       allBarCharts.resize(ID);
     });
   });
-  
+
 });
